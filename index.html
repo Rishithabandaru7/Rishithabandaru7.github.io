@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rishitha Bandaru — SRE & DevOps Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0e14;
+    --surface: #111720;
+    --surface2: #1a2233;
+    --accent: #3dffd1;
+    --accent2: #7b8cff;
+    --text: #e8edf5;
+    --muted: #6b7a96;
+    --border: rgba(255,255,255,0.07);
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Manrope', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.7; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 56px;
+    background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.08em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+  section { padding: 5rem 2.5rem; max-width: 900px; margin: 0 auto; }
+
+  #hero {
+    padding-top: 9rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--accent); background: rgba(61,255,209,0.08);
+    padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(61,255,209,0.2);
+    margin-bottom: 1.2rem;
+  }
+  h1 {
+    font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.1; font-weight: 400; margin-bottom: 1rem; color: var(--text);
+  }
+  h1 em { color: var(--accent); font-style: italic; }
+  .hero-sub { font-size: 16px; color: var(--muted); max-width: 480px; margin-bottom: 2rem; line-height: 1.8; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 10px 22px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
+  .btn-primary { background: var(--accent); color: #0a0e14; }
+  .btn-primary:hover { background: #5afde0; text-decoration: none; }
+  .btn-ghost { border: 1px solid var(--border); color: var(--muted); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--text); text-decoration: none; }
+  .hero-badge {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.5rem 2rem;
+  }
+  .badge-num { font-family: var(--serif); font-size: 2.8rem; color: var(--accent2); line-height: 1; }
+  .badge-label { font-size: 12px; color: var(--muted); text-align: center; }
+
+  .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  h2 { font-family: var(--serif); font-size: 2rem; font-weight: 400; margin-bottom: 2rem; color: var(--text); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .skill-cell { background: var(--surface); padding: 1.2rem 1.4rem; transition: background 0.2s; }
+  .skill-cell:hover { background: var(--surface2); }
+  .skill-category { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 0.5rem; text-transform: uppercase; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+
+  .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+  .exp-item { display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--muted); padding-top: 4px; }
+  .exp-role { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
+  .exp-company { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 0.8rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullets li { font-size: 14px; color: var(--muted); padding-left: 1rem; position: relative; }
+  .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent2); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
+  .project-card:hover { border-color: rgba(61,255,209,0.25); transform: translateY(-2px); }
+  .project-icon { font-size: 22px; margin-bottom: 0.8rem; }
+  .project-title { font-weight: 600; font-size: 14px; margin-bottom: 0.4rem; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+  .stack-tag { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; background: rgba(123,140,255,0.1); color: var(--accent2); border: 1px solid rgba(123,140,255,0.2); }
+
+  .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
+  .cert-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1.1rem; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .cert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  #contact { text-align: center; padding-bottom: 4rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 8px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
+  .contact-link:hover { color: var(--accent); border-color: rgba(61,255,209,0.3); text-decoration: none; }
+
+  footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+
+  @media (max-width: 600px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-badge { display: none; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    nav { padding: 0 1.2rem; }
+    section { padding: 4rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">RB.dev</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div>
+    <div class="hero-tag">Open to SRE · DevOps · Software Engineering roles</div>
+    <h1>Rishitha<br><em>Bandaru</em></h1>
+    <p class="hero-sub">Computer Science graduate with hands-on experience in SRE, DevOps, and software development across three industry roles. Proficient in CI/CD pipelines (Jenkins, Docker, Kubernetes), system monitoring (Prometheus, Grafana), and cloud platforms (AWS, GCP). Strong academic foundation with a 9.25 CGPA, certified in Google Cloud and AWS.</p>
+    <div class="hero-cta">
+      <a href="mailto:bandarurishitha0407@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="#projects" class="btn btn-ghost">View projects</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <span class="badge-num">9.25</span>
+    <span class="badge-label">CGPA<br>CVR College of Engineering</span>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">// capabilities</div>
+  <h2>Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-cell">
+      <div class="skill-category">Languages</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">C</span><span class="tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-category">DevOps & CI/CD</div>
+      <div class="skill-tags">
+        <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Jenkins</span><span class="tag">CI/CD</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-category">Cloud</div>
+      <div class="skill-tags">
+        <span class="tag">AWS</span><span class="tag">GCP</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-category">Monitoring & SRE</div>
+      <div class="skill-tags">
+        <span class="tag">Prometheus</span><span class="tag">Grafana</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-category">Frontend & Backend</div>
+      <div class="skill-tags">
+        <span class="tag">HTML/CSS/JS</span><span class="tag">React</span><span class="tag">REST APIs</span><span class="tag">OOP</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-category">Data & ML</div>
+      <div class="skill-tags">
+        <span class="tag">Apache Spark</span><span class="tag">TensorFlow</span><span class="tag">CNN</span><span class="tag">MySQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">// timeline</div>
+  <h2>Experience</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-date">Jan – Mar 2026</div>
+      <div>
+        <div class="exp-role">SRE Intern</div>
+        <div class="exp-company">Mthree</div>
+        <ul class="exp-bullets">
+          <li>Built and maintained CI/CD pipelines using Jenkins and Docker</li>
+          <li>Containerized and orchestrated applications with Docker and Kubernetes</li>
+          <li>Built monitoring and alerting solutions using Prometheus and Grafana</li>
+          <li>Automated operational tasks with Python and Bash scripting to reduce manual toil</li>
+        </ul>
+        <div style="margin-top:0.8rem; font-family:var(--mono); font-size:11px; color:var(--muted);">Stack: Python · Linux · Jenkins · Docker · Kubernetes · AWS</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Dec 2025 – Jan 2026</div>
+      <div>
+        <div class="exp-role">Research Engineer</div>
+        <div class="exp-company">nDMatrix</div>
+        <ul class="exp-bullets">
+          <li>Applied OOP principles to design structured and reusable Java code</li>
+          <li>Built a Matrix Calculator supporting addition, multiplication, and transformations</li>
+          <li>Implemented matrix operations using Java and linear algebra concepts</li>
+        </ul>
+        <div style="margin-top:0.8rem; font-family:var(--mono); font-size:11px; color:var(--muted);">Stack: Java · Linear Algebra</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jun – Nov 2025</div>
+      <div>
+        <div class="exp-role">Programmer Analyst Trainee</div>
+        <div class="exp-company">Cognizant</div>
+        <ul class="exp-bullets">
+          <li>Processed large datasets using PySpark, applying distributed computing concepts</li>
+          <li>Utilized AWS EC2 and S3 for compute and storage operations</li>
+          <li>Performed system-level tasks using Linux and Bash scripting during training exercises</li>
+          <li>Developed Python scripts for data preprocessing and analysis</li>
+        </ul>
+        <div style="margin-top:0.8rem; font-family:var(--mono); font-size:11px; color:var(--muted);">Stack: Python · PySpark · AWS · Linux · Big Data Technologies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">// build log</div>
+  <h2>Key Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-icon">📊</div>
+      <div class="project-title">Incident Management Tracker</div>
+      <p class="project-desc">Full-stack DevOps dashboard with real-time Prometheus metrics, Grafana visualizations, and Jenkins CI/CD pipeline.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span><span class="stack-tag">Docker</span><span class="stack-tag">Kubernetes</span><span class="stack-tag">Jenkins</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🤖</div>
+      <div class="project-title">Virtual College Assistant</div>
+      <p class="project-desc">AI-powered chatbot using Rasa NLP to answer college queries in real time, with an HTML/CSS/JS interactive frontend.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Rasa</span><span class="stack-tag">HTML/CSS/JS</span><span class="stack-tag">NLP</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🚗</div>
+      <div class="project-title">Driver Drowsiness Detection</div>
+      <p class="project-desc">CNN model to detect driver fatigue via yawning and eye-blink analysis, using facial landmark detection techniques.</p>
+      <div class="project-stack">
+        <span class="stack-tag">TensorFlow</span><span class="stack-tag">CNN</span><span class="stack-tag">Keras</span><span class="stack-tag">OpenCV</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🏢</div>
+      <div class="project-title">Apartment Management System</div>
+      <p class="project-desc">Full-stack web portal for managing tenants, payments, and announcements with role-based access control.</p>
+      <div class="project-stack">
+        <span class="stack-tag">MySQL</span><span class="stack-tag">REST API</span><span class="stack-tag">RBAC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="section-label">// credentials</div>
+  <h2>Certifications</h2>
+  <div class="cert-list">
+    <div class="cert-item"><div class="cert-dot"></div>AWS Academy Cloud Foundations</div>
+    <div class="cert-item"><div class="cert-dot"></div>Google Cloud & Generative AI Pathway — Google</div>
+    <div class="cert-item"><div class="cert-dot"></div>Google Cybersecurity Certificate — Coursera</div>
+    <div class="cert-item"><div class="cert-dot"></div>Salesforce Administrator — SmartInternz</div>
+    <div class="cert-item"><div class="cert-dot"></div>Smart Coder Certification (Silver) — Smart Interviews, 2024</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">// reach out</div>
+  <h2>Let's connect</h2>
+  <p style="color: var(--muted); font-size: 15px;">Open to SRE, DevOps, and Software Engineering opportunities. Based in Hyderabad.</p>
+  <div class="contact-links">
+    <a href="mailto:bandarurishitha0407@gmail.com" class="contact-link">✉ bandarurishitha0407@gmail.com</a>
+    <a href="tel:+918790077046" class="contact-link">📞 +91 8790077046</a>
+    <a href="https://github.com/Rishithabandaru7" target="_blank" class="contact-link">⌥ github.com/Rishithabandaru7</a>
+    <a href="https://www.linkedin.com/in/rishitha-bandaru-5597a42bb" target="_blank" class="contact-link">in linkedin.com/in/rishitha-bandaru</a>
+  </div>
+</section>
+
+<footer>Built with HTML · CSS · 0 frameworks · Rishitha Bandaru © 2026</footer>
+
+</body>
+</html>
