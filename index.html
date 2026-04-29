@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,21 +7,22 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0a0e14;
-    --surface: #111720;
-    --surface2: #1a2233;
-    --accent: #3dffd1;
-    --accent2: #7b8cff;
-    --text: #e8edf5;
-    --muted: #6b7a96;
-    --border: rgba(255,255,255,0.07);
-    --mono: 'DM Mono', monospace;
-    --serif: 'DM Serif Display', serif;
-    --sans: 'Manrope', sans-serif;
+
+  [data-theme="dark"] {
+    --bg: #0a0e14; --surface: #111720; --surface2: #1a2233;
+    --accent: #3dffd1; --accent2: #7b8cff;
+    --text: #e8edf5; --muted: #6b7a96; --border: rgba(255,255,255,0.07);
+    --nav-bg: rgba(10,14,20,0.88);
   }
+  [data-theme="light"] {
+    --bg: #f4f6f9; --surface: #ffffff; --surface2: #edf0f4;
+    --accent: #0a9e74; --accent2: #4f5fd4;
+    --text: #0f1117; --muted: #58687a; --border: rgba(0,0,0,0.08);
+    --nav-bg: rgba(244,246,249,0.92);
+  }
+
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.7; }
+  body { background: var(--bg); color: var(--text); font-family: 'Manrope', sans-serif; font-size: 15px; line-height: 1.7; transition: background 0.3s, color 0.3s; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
@@ -29,92 +30,134 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 2.5rem; height: 56px;
-    background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
+    background: var(--nav-bg); backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.08em; }
-  .nav-links { display: flex; gap: 2rem; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent); letter-spacing: 0.08em; }
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-links { display: flex; gap: 1.8rem; }
   .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); text-decoration: none; }
-
-  section { padding: 5rem 2.5rem; max-width: 900px; margin: 0 auto; }
-
-  #hero {
-    padding-top: 9rem;
-    display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+  .theme-btn {
+    background: none; border: 1px solid var(--border); border-radius: 20px;
+    padding: 4px 11px; cursor: pointer; font-size: 14px; color: var(--muted);
+    transition: all 0.2s;
   }
+  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  section { padding: 5rem 2.5rem; max-width: 920px; margin: 0 auto; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 2rem; color: var(--text); }
+
+  /* HERO */
+  #hero { padding-top: 9rem; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
   .hero-tag {
-    display: inline-block;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
     color: var(--accent); background: rgba(61,255,209,0.08);
-    padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(61,255,209,0.2);
-    margin-bottom: 1.2rem;
+    padding: 4px 14px; border-radius: 20px; border: 1px solid rgba(61,255,209,0.22); margin-bottom: 1.2rem;
   }
-  h1 {
-    font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.6rem);
-    line-height: 1.1; font-weight: 400; margin-bottom: 1rem; color: var(--text);
-  }
+  [data-theme="light"] .hero-tag { background: rgba(10,158,116,0.08); border-color: rgba(10,158,116,0.25); }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; font-weight: 400; margin-bottom: 1rem; }
   h1 em { color: var(--accent); font-style: italic; }
-  .hero-sub { font-size: 16px; color: var(--muted); max-width: 480px; margin-bottom: 2rem; line-height: 1.8; }
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 10px 22px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
+  .hero-sub { font-size: 15px; color: var(--muted); max-width: 480px; margin-bottom: 2rem; line-height: 1.85; }
+  .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 10px 22px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; transition: all 0.2s; }
   .btn-primary { background: var(--accent); color: #0a0e14; }
-  .btn-primary:hover { background: #5afde0; text-decoration: none; }
+  .btn-primary:hover { opacity: 0.85; text-decoration: none; }
   .btn-ghost { border: 1px solid var(--border); color: var(--muted); }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--text); text-decoration: none; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--text); text-decoration: none; }
+  .btn-outline { border: 1px solid var(--accent); color: var(--accent); }
+  .btn-outline:hover { background: var(--accent); color: #0a0e14; text-decoration: none; }
   .hero-badge {
     display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-    padding: 1.5rem 2rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.6rem 2.2rem;
   }
-  .badge-num { font-family: var(--serif); font-size: 2.8rem; color: var(--accent2); line-height: 1; }
+  .badge-num { font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: var(--accent2); line-height: 1; }
   .badge-label { font-size: 12px; color: var(--muted); text-align: center; }
 
-  .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
-  h2 { font-family: var(--serif); font-size: 2rem; font-weight: 400; margin-bottom: 2rem; color: var(--text); }
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+  .about-text p { font-size: 15px; color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
+  .about-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .about-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.3rem; }
+  .about-stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); line-height: 1; }
+  .about-stat-label { font-size: 12px; color: var(--muted); margin-top: 3px; }
 
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 2.5rem; }
   .skill-cell { background: var(--surface); padding: 1.2rem 1.4rem; transition: background 0.2s; }
   .skill-cell:hover { background: var(--surface2); }
-  .skill-category { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 0.5rem; text-transform: uppercase; }
+  .skill-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 0.5rem; text-transform: uppercase; }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+  [data-theme="light"] .tag { background: rgba(0,0,0,0.04); }
 
+  .skill-bars-title { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 1.2rem; letter-spacing: 0.04em; }
+  .skill-bars { display: flex; flex-direction: column; gap: 1.1rem; }
+  .skill-bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .skill-bar-name { font-size: 13px; color: var(--text); font-weight: 500; }
+  .skill-bar-pct { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); }
+  .skill-bar-track { height: 6px; background: var(--surface2); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+  .skill-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent), var(--accent2)); width: 0%; transition: width 1.3s cubic-bezier(0.4,0,0.2,1); }
+
+  /* EXPERIENCE */
   .exp-list { display: flex; flex-direction: column; gap: 2rem; }
-  .exp-item { display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  .exp-item { display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
   .exp-item:last-child { border-bottom: none; }
-  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--muted); padding-top: 4px; }
+  .exp-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); padding-top: 4px; line-height: 1.6; }
   .exp-role { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
-  .exp-company { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 0.8rem; }
+  .exp-company { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 0.8rem; }
   .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .exp-bullets li { font-size: 14px; color: var(--muted); padding-left: 1rem; position: relative; }
+  .exp-bullets li { font-size: 14px; color: var(--muted); padding-left: 1.2rem; position: relative; }
   .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent2); }
+  .stack-line { margin-top: 0.8rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
 
+  /* PROJECTS */
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
   .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
-  .project-card:hover { border-color: rgba(61,255,209,0.25); transform: translateY(-2px); }
+  .project-card:hover { border-color: rgba(61,255,209,0.3); transform: translateY(-2px); }
   .project-icon { font-size: 22px; margin-bottom: 0.8rem; }
   .project-title { font-weight: 600; font-size: 14px; margin-bottom: 0.4rem; }
-  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
   .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
-  .stack-tag { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; background: rgba(123,140,255,0.1); color: var(--accent2); border: 1px solid rgba(123,140,255,0.2); }
+  .stack-tag { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; background: rgba(123,140,255,0.1); color: var(--accent2); border: 1px solid rgba(123,140,255,0.2); }
 
-  .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
+  /* EDUCATION */
+  .edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 2rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; }
+  .edu-degree { font-weight: 600; font-size: 16px; margin-bottom: 5px; }
+  .edu-school { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+  .edu-detail { font-size: 13px; color: var(--muted); }
+  .edu-cgpa-num { font-family: 'DM Serif Display', serif; font-size: 2.6rem; color: var(--accent2); line-height: 1; text-align: center; }
+  .edu-cgpa-label { font-size: 11px; color: var(--muted); text-align: center; margin-top: 3px; }
+
+  /* GITHUB STATS */
+  .github-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  .github-stats img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
+  .github-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent); border: 1px solid rgba(61,255,209,0.25); padding: 9px 20px; border-radius: 8px; transition: all 0.2s; }
+  .github-link:hover { background: rgba(61,255,209,0.07); text-decoration: none; }
+
+  /* CERTIFICATIONS */
+  .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; }
   .cert-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1.1rem; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
   .cert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
+  /* CONTACT */
   #contact { text-align: center; padding-bottom: 4rem; }
-  .contact-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
-  .contact-link { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 8px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
+  .contact-links { display: flex; justify-content: center; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 13px; color: var(--muted); padding: 9px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
   .contact-link:hover { color: var(--accent); border-color: rgba(61,255,209,0.3); text-decoration: none; }
 
-  footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+  footer { text-align: center; padding: 1.5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     #hero { grid-template-columns: 1fr; }
     .hero-badge { display: none; }
-    .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    .github-stats { grid-template-columns: 1fr; }
+    .edu-card { grid-template-columns: 1fr; }
     nav { padding: 0 1.2rem; }
+    .nav-links { gap: 1rem; }
     section { padding: 4rem 1.2rem; }
   }
 </style>
@@ -123,22 +166,28 @@
 
 <nav>
   <span class="nav-logo">RB.dev</span>
-  <div class="nav-links">
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
   </div>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div>
     <div class="hero-tag">Open to SRE · DevOps · Software Engineering roles</div>
     <h1>Rishitha<br><em>Bandaru</em></h1>
     <p class="hero-sub">Computer Science graduate with hands-on experience in SRE, DevOps, and software development across three industry roles. Proficient in CI/CD pipelines (Jenkins, Docker, Kubernetes), system monitoring (Prometheus, Grafana), and cloud platforms (AWS, GCP). Strong academic foundation with a 9.25 CGPA, certified in Google Cloud and AWS.</p>
     <div class="hero-cta">
-      <a href="mailto:bandarurishitha0407@gmail.com" class="btn btn-primary">Get in touch</a>
-      <a href="#projects" class="btn btn-ghost">View projects</a>
+      <a href="mailto:bandarurishitha0407@gmail.com" class="btn btn-primary">Contact Me</a>
+      <a href="#projects" class="btn btn-ghost">View Projects</a>
+      <a href="Rishitha_Bandaru_Resume.pdf" download class="btn btn-outline">⬇ Resume</a>
     </div>
   </div>
   <div class="hero-badge">
@@ -147,8 +196,36 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// who i am</div>
+  <h2>About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Computer Science graduate from CVR College of Engineering with a passion for building reliable, scalable infrastructure. My journey into SRE and DevOps started during my internship at Mthree, where I got hands-on experience with real-world CI/CD pipelines, container orchestration, and system monitoring.</p>
+      <p>I enjoy automating repetitive tasks, improving system reliability, and building tools that make engineers' lives easier. I'm constantly exploring cloud technologies and sharpening my problem-solving skills.</p>
+      <p>Currently based in Hyderabad and open to SRE, DevOps, and Software Engineering opportunities.</p>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="about-stat-num">3</div>
+        <div class="about-stat-label">Industry roles — Mthree, nDMatrix, Cognizant</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">4+</div>
+        <div class="about-stat-label">Projects built and deployed</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">5</div>
+        <div class="about-stat-label">Certifications earned</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
 <section id="skills">
-  <div class="section-label"></div>
+  <div class="section-label">// capabilities</div>
   <h2>Technical Skills</h2>
   <div class="skills-grid">
     <div class="skill-cell">
@@ -188,10 +265,39 @@
       </div>
     </div>
   </div>
+
+  <p class="skill-bars-title">Proficiency</p>
+  <div class="skill-bars" id="skillBars">
+    <div class="skill-bar-item">
+      <div class="skill-bar-header"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">90%</span></div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header"><span class="skill-bar-name">Docker & Kubernetes</span><span class="skill-bar-pct">85%</span></div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header"><span class="skill-bar-name">Linux & Bash</span><span class="skill-bar-pct">85%</span></div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header"><span class="skill-bar-name">AWS & GCP</span><span class="skill-bar-pct">75%</span></div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header"><span class="skill-bar-name">Java</span><span class="skill-bar-pct">80%</span></div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header"><span class="skill-bar-name">Prometheus & Grafana</span><span class="skill-bar-pct">80%</span></div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+    </div>
+  </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label"></div>
+  <div class="section-label">// timeline</div>
   <h2>Experience</h2>
   <div class="exp-list">
     <div class="exp-item">
@@ -205,7 +311,7 @@
           <li>Built monitoring and alerting solutions using Prometheus and Grafana</li>
           <li>Automated operational tasks with Python and Bash scripting to reduce manual toil</li>
         </ul>
-        <div style="margin-top:0.8rem; font-family:var(--mono); font-size:11px; color:var(--muted);">Stack: Python · Linux · Jenkins · Docker · Kubernetes · AWS</div>
+        <div class="stack-line">Stack: Python · Linux · Jenkins · Docker · Kubernetes · AWS</div>
       </div>
     </div>
     <div class="exp-item">
@@ -218,7 +324,7 @@
           <li>Built a Matrix Calculator supporting addition, multiplication, and transformations</li>
           <li>Implemented matrix operations using Java and linear algebra concepts</li>
         </ul>
-        <div style="margin-top:0.8rem; font-family:var(--mono); font-size:11px; color:var(--muted);">Stack: Java · Linear Algebra</div>
+        <div class="stack-line">Stack: Java · Linear Algebra</div>
       </div>
     </div>
     <div class="exp-item">
@@ -232,14 +338,15 @@
           <li>Performed system-level tasks using Linux and Bash scripting during training exercises</li>
           <li>Developed Python scripts for data preprocessing and analysis</li>
         </ul>
-        <div style="margin-top:0.8rem; font-family:var(--mono); font-size:11px; color:var(--muted);">Stack: Python · PySpark · AWS · Linux · Big Data Technologies</div>
+        <div class="stack-line">Stack: Python · PySpark · AWS · Linux · Big Data Technologies</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label"></div>
+  <div class="section-label">// build log</div>
   <h2>Key Projects</h2>
   <div class="projects-grid">
     <div class="project-card">
@@ -247,7 +354,7 @@
       <div class="project-title">Incident Management Tracker</div>
       <p class="project-desc">Python Flask web dashboard with real-time Prometheus metrics and Grafana visualizations, deployed via Jenkins CI/CD pipeline.</p>
       <div class="project-stack">
-        <span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span><span class="stack-tag">Docker</span><span class="stack-tag">Kubernetes</span><span class="stack-tag">Jenkins</span>
+        <span class="stack-tag">Python Flask</span><span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span><span class="stack-tag">Docker</span><span class="stack-tag">Kubernetes</span><span class="stack-tag">Jenkins</span>
       </div>
     </div>
     <div class="project-card">
@@ -269,7 +376,7 @@
     <div class="project-card">
       <div class="project-icon">🏢</div>
       <div class="project-title">Apartment Management System</div>
-      <p class="project-desc">Full-stack web portal for managing tenants, payments, and announcements with role-based access control.</p>
+      <p class="project-desc">Web-based system to manage tenants, payments, and announcements with role-based access control and user-friendly admin interfaces. Jul 2024 – Oct 2024</p>
       <div class="project-stack">
         <span class="stack-tag">React</span><span class="stack-tag">JavaScript</span><span class="stack-tag">Node.js</span><span class="stack-tag">Express.js</span><span class="stack-tag">MongoDB</span><span class="stack-tag">JWT</span>
       </div>
@@ -277,8 +384,37 @@
   </div>
 </section>
 
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">// academic background</div>
+  <h2>Education</h2>
+  <div class="edu-card">
+    <div>
+      <div class="edu-degree">B.Tech in Computer Science Engineering</div>
+      <div class="edu-school">CVR College of Engineering</div>
+      <div class="edu-detail">2021 – 2025 &nbsp;·&nbsp; Hyderabad, Telangana</div>
+    </div>
+    <div>
+      <div class="edu-cgpa-num">9.25</div>
+      <div class="edu-cgpa-label">CGPA / 10.0</div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB STATS -->
+<section id="github">
+  <div class="section-label">// activity</div>
+  <h2>GitHub Stats</h2>
+  <div class="github-stats">
+    <img src="https://github-readme-stats.vercel.app/api?username=Rishithabandaru7&show_icons=true&theme=dark&hide_border=true&bg_color=111720&title_color=3dffd1&icon_color=7b8cff&text_color=e8edf5" alt="Rishitha's GitHub stats" />
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rishithabandaru7&layout=compact&theme=dark&hide_border=true&bg_color=111720&title_color=3dffd1&text_color=e8edf5" alt="Top languages" />
+  </div>
+  <a href="https://github.com/Rishithabandaru7" target="_blank" class="github-link">View full GitHub profile →</a>
+</section>
+
+<!-- CERTIFICATIONS -->
 <section id="certifications">
-  <div class="section-label"></div>
+  <div class="section-label">// credentials</div>
   <h2>Certifications</h2>
   <div class="cert-list">
     <div class="cert-item"><div class="cert-dot"></div>AWS Academy Cloud Foundations</div>
@@ -289,19 +425,48 @@
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
-  <div class="section-label"></div>
+  <div class="section-label">// reach out</div>
   <h2>Let's connect</h2>
   <p style="color: var(--muted); font-size: 15px;">Open to SRE, DevOps, and Software Engineering opportunities. Based in Hyderabad.</p>
   <div class="contact-links">
-    <a href="mailto:bandarurishitha0407@gmail.com" class="contact-link">✉ bandarurishitha0407@gmail.com</a>
+    <a href="mailto:bandarurishitha0407@gmail.com" class="contact-link">✉ Email</a>
     <a href="tel:+918790077046" class="contact-link">📞 +91 8790077046</a>
-    <a href="https://github.com/Rishithabandaru7" target="_blank" class="contact-link">⌥ github.com/Rishithabandaru7</a>
-    <a href="https://www.linkedin.com/in/rishitha-bandaru-5597a42bb" target="_blank" class="contact-link">in linkedin.com/in/rishitha-bandaru</a>
+    <a href="https://github.com/Rishithabandaru7" target="_blank" class="contact-link">GitHub</a>
+    <a href="https://www.linkedin.com/in/rishitha-bandaru-5597a42bb" target="_blank" class="contact-link">LinkedIn</a>
+    <a href="Rishitha_Bandaru_Resume.pdf" download class="contact-link">⬇ Resume</a>
   </div>
 </section>
 
-<footer>Rishitha Bandaru © 2026</footer>
+<footer>Built with HTML · CSS · JavaScript · Rishitha Bandaru © 2026</footer>
 
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const btn = document.querySelector('.theme-btn');
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+      btn.textContent = '🌙';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      btn.textContent = '☀️';
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(fill => {
+          fill.style.width = fill.getAttribute('data-width') + '%';
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  const bars = document.getElementById('skillBars');
+  if (bars) observer.observe(bars);
+</script>
 </body>
 </html>
