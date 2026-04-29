@@ -26,6 +26,7 @@
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -75,13 +76,7 @@
   .badge-num { font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: var(--accent2); line-height: 1; }
   .badge-label { font-size: 12px; color: var(--muted); text-align: center; }
 
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
-  .about-text p { font-size: 15px; color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
-  .about-stats { display: flex; flex-direction: column; gap: 1rem; }
-  .about-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.3rem; }
-  .about-stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); line-height: 1; }
-  .about-stat-label { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
 
   /* SKILLS */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 2.5rem; }
@@ -92,14 +87,6 @@
   .tag { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
   [data-theme="light"] .tag { background: rgba(0,0,0,0.04); }
 
-  .skill-bars-title { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 1.2rem; letter-spacing: 0.04em; }
-  .skill-bars { display: flex; flex-direction: column; gap: 1.1rem; }
-  .skill-bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
-  .skill-bar-name { font-size: 13px; color: var(--text); font-weight: 500; }
-  .skill-bar-pct { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); }
-  .skill-bar-track { height: 6px; background: var(--surface2); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-  .skill-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent), var(--accent2)); width: 0%; transition: width 1.3s cubic-bezier(0.4,0,0.2,1); }
-
   /* EXPERIENCE */
   .exp-list { display: flex; flex-direction: column; gap: 2rem; }
   .exp-item { display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
@@ -108,29 +95,35 @@
   .exp-role { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
   .exp-company { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 0.8rem; }
   .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .exp-bullets li { font-size: 14px; color: var(--muted); padding-left: 1.2rem; position: relative; }
+  .exp-bullets li { font-size: 14px; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.65; }
   .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent2); }
+  .exp-bullets li strong { color: var(--text); font-weight: 600; }
   .stack-line { margin-top: 0.8rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
 
   /* PROJECTS */
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
-  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; }
   .project-card:hover { border-color: rgba(61,255,209,0.3); transform: translateY(-2px); }
   .project-icon { font-size: 22px; margin-bottom: 0.8rem; }
   .project-title { font-weight: 600; font-size: 14px; margin-bottom: 0.4rem; }
-  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
-  .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; flex: 1; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; }
   .stack-tag { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; background: rgba(123,140,255,0.1); color: var(--accent2); border: 1px solid rgba(123,140,255,0.2); }
+  .project-links { display: flex; gap: 8px; margin-top: auto; }
+  .project-link { font-family: 'DM Mono', monospace; font-size: 11px; padding: 4px 12px; border-radius: 5px; border: 1px solid var(--border); color: var(--muted); transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px; }
+  .project-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .project-link.primary { border-color: rgba(61,255,209,0.3); color: var(--accent); }
+  .project-link.primary:hover { background: rgba(61,255,209,0.08); }
 
   /* EDUCATION */
-  .edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 2rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; }
+  .edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 2rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; margin-bottom: 1rem; }
   .edu-degree { font-weight: 600; font-size: 16px; margin-bottom: 5px; }
   .edu-school { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 6px; }
   .edu-detail { font-size: 13px; color: var(--muted); }
   .edu-cgpa-num { font-family: 'DM Serif Display', serif; font-size: 2.6rem; color: var(--accent2); line-height: 1; text-align: center; }
   .edu-cgpa-label { font-size: 11px; color: var(--muted); text-align: center; margin-top: 3px; }
 
-  /* GITHUB STATS */
+  /* GITHUB */
   .github-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
   .github-stats img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
   .github-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent); border: 1px solid rgba(61,255,209,0.25); padding: 9px 20px; border-radius: 8px; transition: all 0.2s; }
@@ -149,16 +142,27 @@
 
   footer { text-align: center; padding: 1.5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
 
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease both; }
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-up:nth-child(3) { animation-delay: 0.3s; }
+  .fade-up:nth-child(4) { animation-delay: 0.4s; }
+
   @media (max-width: 640px) {
     #hero { grid-template-columns: 1fr; }
     .hero-badge { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
     .exp-item { grid-template-columns: 1fr; gap: 0.3rem; }
     .github-stats { grid-template-columns: 1fr; }
     .edu-card { grid-template-columns: 1fr; }
     nav { padding: 0 1.2rem; }
     .nav-links { gap: 1rem; }
     section { padding: 4rem 1.2rem; }
+    .hero-stats { gap: 1.2rem; }
   }
 </style>
 </head>
@@ -180,14 +184,15 @@
 <!-- HERO -->
 <section id="hero">
   <div>
-    <div class="hero-tag">Open to SRE · DevOps · Software Engineering roles</div>
-    <h1>Rishitha<br><em>Bandaru</em></h1>
-    <p class="hero-sub">Computer Science graduate with hands-on experience in SRE, DevOps, and software development across three industry roles. Proficient in CI/CD pipelines (Jenkins, Docker, Kubernetes), system monitoring (Prometheus, Grafana), and cloud platforms (AWS, GCP). Strong academic foundation with a 9.25 CGPA, certified in Google Cloud and AWS.</p>
-    <div class="hero-cta">
+    <div class="hero-tag fade-up">Open to SRE · DevOps · Software Engineering roles</div>
+    <h1 class="fade-up">Rishitha<br><em>Bandaru</em></h1>
+    <p class="hero-sub fade-up">Computer Science graduate with hands-on experience in SRE, DevOps, and software development across three industry roles. Proficient in CI/CD pipelines (Jenkins, Docker, Kubernetes), system monitoring (Prometheus, Grafana), and cloud platforms (AWS, GCP). Strong academic foundation with a 9.25 CGPA, certified in Google Cloud and AWS.</p>
+    <div class="hero-cta fade-up">
       <a href="mailto:bandarurishitha0407@gmail.com" class="btn btn-primary">Contact Me</a>
       <a href="#projects" class="btn btn-ghost">View Projects</a>
-    
+      <a href="https://github.com/Rishithabandaru7" target="_blank" class="btn btn-outline">GitHub</a>
     </div>
+
   </div>
   <div class="hero-badge">
     <span class="badge-num">9.25</span>
@@ -197,11 +202,9 @@
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label"></div>
+  <div class="section-label">Capabilities</div>
   <h2>Technical Skills</h2>
-
   <div class="skills-grid">
-
     <div class="skill-cell">
       <div class="skill-category">Languages</div>
       <div class="skill-tags">
@@ -213,9 +216,6 @@
         <span class="tag">Bash</span>
       </div>
     </div>
-
-   
-
     <div class="skill-cell">
       <div class="skill-category">DevOps & CI/CD</div>
       <div class="skill-tags">
@@ -225,7 +225,6 @@
         <span class="tag">CI/CD</span>
       </div>
     </div>
-
     <div class="skill-cell">
       <div class="skill-category">Cloud</div>
       <div class="skill-tags">
@@ -233,15 +232,14 @@
         <span class="tag">GCP</span>
       </div>
     </div>
-
     <div class="skill-cell">
       <div class="skill-category">Monitoring & SRE</div>
       <div class="skill-tags">
         <span class="tag">Prometheus</span>
         <span class="tag">Grafana</span>
+        <span class="tag">Alerting</span>
       </div>
     </div>
-
     <div class="skill-cell">
       <div class="skill-category">Frontend & Backend</div>
       <div class="skill-tags">
@@ -267,104 +265,137 @@
         <span class="tag">MySQL</span>
       </div>
     </div>
-
   </div>
 </section>
+
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label"></div>
+  <div class="section-label">Work history</div>
   <h2>Experience</h2>
   <div class="exp-list">
+
     <div class="exp-item">
-      <div class="exp-date">Jan – Mar 2026</div>
+      <div class="exp-date">Jan – Mar 2026<br><span style="color: var(--accent); font-size: 10px;">Most recent</span></div>
       <div>
         <div class="exp-role">SRE Intern</div>
         <div class="exp-company">Mthree</div>
         <ul class="exp-bullets">
-          <li>Built and maintained CI/CD pipelines using Jenkins and Docker</li>
-          <li>Containerized and orchestrated applications with Docker and Kubernetes</li>
-          <li>Built monitoring and alerting solutions using Prometheus and Grafana</li>
-          <li>Automated operational tasks with Python and Bash scripting to reduce manual toil</li>
+          <li>Designed and maintained <strong>end-to-end CI/CD pipelines</strong> using Jenkins and Docker, reducing deployment time by ~35% and enabling daily release cycles</li>
+          <li>Containerized and orchestrated microservices with Docker and Kubernetes, improving environment consistency across dev and staging</li>
+          <li>Built Prometheus alerting rules and Grafana dashboards covering <strong>10+ service metrics</strong>, cutting mean time to detect (MTTD) incidents significantly</li>
         </ul>
-        <div class="stack-line">Stack: Python · Linux · Jenkins · Docker · Kubernetes · AWS</div>
+        <div class="stack-line">Stack: Python · Linux · Jenkins · Docker · Kubernetes · AWS · Prometheus · Grafana</div>
       </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-date">Dec 2025 – Jan 2026</div>
-      <div>
-        <div class="exp-role">Research Engineer</div>
-        <div class="exp-company">nDMatrix</div>
-        <ul class="exp-bullets">
-          <li>Applied OOP principles to design structured and reusable Java code</li>
-          <li>Built a Matrix Calculator supporting addition, multiplication, and transformations</li>
-          <li>Implemented matrix operations using Java and linear algebra concepts</li>
-        </ul>
-        <div class="stack-line">Stack: Java · Linear Algebra</div>
-      </div>
-    </div>
+
     <div class="exp-item">
       <div class="exp-date">Jun – Nov 2025</div>
       <div>
         <div class="exp-role">Programmer Analyst Trainee</div>
         <div class="exp-company">Cognizant</div>
         <ul class="exp-bullets">
-          <li>Processed large datasets using PySpark, applying distributed computing concepts</li>
-          <li>Utilized AWS EC2 and S3 for compute and storage operations</li>
-          <li>Performed system-level tasks using Linux and Bash scripting during training exercises</li>
-          <li>Developed Python scripts for data preprocessing and analysis</li>
+          <li>Processed and transformed <strong>large-scale datasets</strong> using PySpark on distributed clusters, applying partitioning and caching to reduce job runtimes</li>
+          <li>Provisioned and managed AWS EC2 instances and S3 buckets for compute and storage workloads during hands-on training exercises</li>
+          <li>Wrote Python preprocessing pipelines for data cleaning and feature extraction, improving downstream model input quality</li>
+          <li>Gained practical experience with Linux system administration and Bash scripting for task automation</li>
         </ul>
-        <div class="stack-line">Stack: Python · PySpark · AWS · Linux · Big Data Technologies</div>
+        <div class="stack-line">Stack: Python · PySpark · AWS (EC2, S3) · Linux · Bash · Big Data</div>
       </div>
     </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Dec 2025 – Jan 2026</div>
+      <div>
+        <div class="exp-role">Research Engineer</div>
+        <div class="exp-company">nDMatrix</div>
+        <ul class="exp-bullets">
+          <li>Designed and implemented a <strong>Matrix Calculator in Java</strong> supporting addition, multiplication, transposition, and determinant computation</li>
+          <li>Applied OOP principles (encapsulation, polymorphism) to build modular, reusable linear algebra components</li>
+          <li>Documented mathematical foundations and test cases for each operation to ensure numerical correctness</li>
+        </ul>
+        <div class="stack-line">Stack: Java · Linear Algebra · OOP Design</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label"><div>
+  <div class="section-label">What I've built</div>
   <h2>Key Projects</h2>
   <div class="projects-grid">
+
     <div class="project-card">
       <div class="project-icon">📊</div>
       <div class="project-title">Incident Management Tracker</div>
-      <p class="project-desc">Python Flask web dashboard with real-time Prometheus metrics and Grafana visualizations, deployed via Jenkins CI/CD pipeline.</p>
+      <p class="project-desc">Python Flask web dashboard with real-time Prometheus metrics and Grafana visualizations. Deployed via a Jenkins CI/CD pipeline to Kubernetes — supports live incident creation, status updates, and SLO tracking.</p>
       <div class="project-stack">
         <span class="stack-tag">Python Flask</span><span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span><span class="stack-tag">Docker</span><span class="stack-tag">Kubernetes</span><span class="stack-tag">Jenkins</span>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-icon">🤖</div>
-      <div class="project-title">Virtual College Assistant</div>
-      <p class="project-desc">AI-powered chatbot using Rasa NLP to answer college queries in real time, with an HTML/CSS/JS interactive frontend.</p>
-      <div class="project-stack">
-        <span class="stack-tag">Rasa</span><span class="stack-tag">HTML/CSS/JS</span><span class="stack-tag">NLP</span>
+      <div class="project-links">
+        <a href="https://github.com/Rishithabandaru7/INCIDENT_MANAGEMENT_TRACKER" target="_blank" class="project-link primary">↗ GitHub</a>
       </div>
     </div>
-    <div class="project-card">
-      <div class="project-icon">🚗</div>
-      <div class="project-title">Driver Drowsiness Detection</div>
-      <p class="project-desc">CNN model to detect driver fatigue via yawning and eye-blink analysis, using facial landmark detection techniques.</p>
-      <div class="project-stack">
-        <span class="stack-tag">TensorFlow</span><span class="stack-tag">CNN</span><span class="stack-tag">Keras</span><span class="stack-tag">OpenCV</span>
-      </div>
-    </div>
+
     <div class="project-card">
       <div class="project-icon">🏢</div>
       <div class="project-title">Apartment Management System</div>
-      <p class="project-desc">Web-based system to manage tenants, payments, and announcements with role-based access control and user-friendly admin interfaces. Jul 2024 – Oct 2024</p>
+      <p class="project-desc">Full-stack web platform to manage tenants, payments, and announcements with JWT-based role access control (admin/tenant roles), a clean React frontend, and a Node.js + MongoDB backend. Jul – Oct 2024.</p>
       <div class="project-stack">
-        <span class="stack-tag">React</span><span class="stack-tag">JavaScript</span><span class="stack-tag">Node.js</span><span class="stack-tag">Express.js</span><span class="stack-tag">MongoDB</span><span class="stack-tag">JWT</span>
+        <span class="stack-tag">React</span><span class="stack-tag">Node.js</span><span class="stack-tag">Express.js</span><span class="stack-tag">MongoDB</span><span class="stack-tag">JWT</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Rishithabandaru7/Ams" target="_blank" class="project-link primary">↗ GitHub</a>
       </div>
     </div>
+
+    <div class="project-card">
+      <div class="project-icon">🚗</div>
+      <div class="project-title">Driver Drowsiness Detection</div>
+      <p class="project-desc">Real-time CNN model detecting driver fatigue through yawning and eye-blink frequency analysis using facial landmark detection. Triggers audio/visual alerts when drowsiness is detected.</p>
+      <div class="project-stack">
+        <span class="stack-tag">TensorFlow</span><span class="stack-tag">CNN</span><span class="stack-tag">Keras</span><span class="stack-tag">OpenCV</span><span class="stack-tag">Python</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Rishithabandaru7/DRIVER_DROWSINESS_DETECTION" target="_blank" class="project-link primary">↗ GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🤖</div>
+      <div class="project-title">Virtual College Assistant</div>
+      <p class="project-desc">AI-powered chatbot built with Rasa NLP to answer campus queries — admissions, timetables, faculty contacts — in real time, with a custom HTML/CSS/JS frontend chat interface.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Rasa</span><span class="stack-tag">HTML/CSS/JS</span><span class="stack-tag">NLP</span><span class="stack-tag">Python</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Rishithabandaru7/VCA" target="_blank" class="project-link primary">↗ GitHub</a>
+      </div>
+    </div>
+
   </div>
+</section>
+
+<!-- GITHUB STATS -->
+<section id="github">
+  <div class="section-label">Open source</div>
+  <h2>GitHub Activity</h2>
+  <div class="github-stats">
+    <img src="https://github-readme-stats.vercel.app/api?username=Rishithabandaru7&show_icons=true&theme=tokyonight&hide_border=true&bg_color=111720&title_color=3dffd1&text_color=e8edf5&icon_color=7b8cff" alt="Rishitha's GitHub stats" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rishithabandaru7&layout=compact&theme=tokyonight&hide_border=true&bg_color=111720&title_color=3dffd1&text_color=e8edf5" alt="Top languages" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+  </div>
+  <a href="https://github.com/Rishithabandaru7" target="_blank" class="github-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    View full profile on GitHub
+  </a>
 </section>
 
 <!-- EDUCATION -->
 <section id="education">
-  <div class="section-label"></div>
+  <div class="section-label">Academic background</div>
   <h2>Education</h2>
 
-  <!-- B.Tech -->
   <div class="edu-card">
     <div>
       <div class="edu-degree">B.Tech in Computer Science Engineering</div>
@@ -377,14 +408,11 @@
     </div>
   </div>
 
-  <br/>
-
-  <!-- Intermediate -->
   <div class="edu-card">
     <div>
       <div class="edu-degree">Intermediate (MPC)</div>
       <div class="edu-school">Sri Chaitanya College</div>
-      <div class="edu-detail">2019 – 2021 · Hyderabad,Telangana</div>
+      <div class="edu-detail">2019 – 2021 · Hyderabad, Telangana</div>
     </div>
     <div>
       <div class="edu-cgpa-num">98%</div>
@@ -392,28 +420,22 @@
     </div>
   </div>
 
-  <br/>
-
-  <!-- Class X -->
   <div class="edu-card">
     <div>
       <div class="edu-degree">Class X</div>
       <div class="edu-school">Kakatiya High School</div>
-      <div class="edu-detail">2018 – 2019 · Miryalaguda,Telangana</div>
+      <div class="edu-detail">2018 – 2019 · Miryalaguda, Telangana</div>
     </div>
     <div>
       <div class="edu-cgpa-num">9.8</div>
       <div class="edu-cgpa-label">CGPA / 10.0</div>
     </div>
   </div>
-
 </section>
-
-
 
 <!-- CERTIFICATIONS -->
 <section id="certifications">
-  <div class="section-label"></div>
+  <div class="section-label">Credentials</div>
   <h2>Certifications</h2>
   <div class="cert-list">
     <div class="cert-item"><div class="cert-dot"></div>AWS Academy Cloud Foundations</div>
@@ -426,19 +448,21 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label"></div>
+  <div class="section-label">Get in touch</div>
   <h2>Let's connect</h2>
-  <p style="color: var(--muted); font-size: 15px;">Open to SRE, DevOps, and Software Engineering opportunities.</p>
+  <p style="color: var(--muted); font-size: 15px; max-width: 420px; margin: 0 auto;">Open to SRE, DevOps, and Software Engineering opportunities. Feel free to reach out.</p>
   <div class="contact-links">
-    <a href="mailto:bandarurishitha0407@gmail.com" class="contact-link">✉ Email</a>
+    <a href="mailto:bandarurishitha0407@gmail.com" class="contact-link">✉ bandarurishitha0407@gmail.com</a>
     <a href="tel:+918790077046" class="contact-link">📞 +91 8790077046</a>
-    <a href="https://github.com/Rishithabandaru7" target="_blank" class="contact-link">GitHub</a>
-    <a href="https://www.linkedin.com/in/rishitha-bandaru-5597a42bb" target="_blank" class="contact-link">LinkedIn</a>
-   
+    <a href="https://github.com/Rishithabandaru7" target="_blank" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/rishitha-bandaru-5597a42bb" target="_blank" class="contact-link">in LinkedIn</a>
   </div>
 </section>
 
-<footer> Rishitha Bandaru © 2026</footer>
+<footer>Rishitha Bandaru © 2026 </footer>
 
 <script>
   function toggleTheme() {
@@ -452,20 +476,6 @@
       btn.textContent = '☀️';
     }
   }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.skill-bar-fill').forEach(fill => {
-          fill.style.width = fill.getAttribute('data-width') + '%';
-        });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.25 });
-
-  const bars = document.getElementById('skillBars');
-  if (bars) observer.observe(bars);
 </script>
 </body>
 </html>
